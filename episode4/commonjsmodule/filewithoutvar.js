@@ -1,0 +1,1 @@
+console.log("file without function and variable")
