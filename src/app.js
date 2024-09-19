@@ -1,19 +1,22 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 
-// app.use('/', (req, res) => {
-//   res.send('ddd');
-// });
-// app.use('/hello', (req, res) => {
-//   res.send('hello');
-// });
-app.use('/hello/1', (req, res) => {
-  res.send('h2');
-});
-app.use('/hello', (req, res) => {
-  res.send('ddd');
-});
-
+app.get(
+  "/user",
+  (req, res,next) => {
+    console.log("complete first handler ");
+    next()
+    res.send("<h1>first controller</h1>");
+  },
+  (req, res) => {
+    console.log("2nd handler");
+    res.send("<h1>2nd handler</h1>");
+  }
+);
+const multiplerouteone=(req,res)=>{
+  res.send("need one ")
+}
+app.get("/need",multiplerouteone)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
