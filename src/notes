@@ -1,0 +1,7 @@
+
+episode 13
+--create a free cluster(explore mongodb)
+--Install mongoose libary 
+--get the connection URL /devtiner;
+--connectDb function conntect to DB before starting apllication 
+--need to create user Schema in mongoose

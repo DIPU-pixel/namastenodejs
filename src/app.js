@@ -1,28 +1,19 @@
 const express = require("express");
-const { userAuth, adminAuth } = require("./middlewares/Auth");
+const connectDb = require("./config/db");
 const app = express();
 
-
-// app.get("/user",userAuth)
 app.get("/", (req, res) => {
-  res.send("<h1>This is main URL </h1>");
+  res.send("hello");
 });
-
-//admin
-app.get("/admin", adminAuth, (req, res) => {
-  res.send("<h1> this is admin page </h1>");
-});
-
-//user
-app.get("/user",userAuth, (req, res) => {
-  res.send("<h1> this is user page </h1>");
-});
-app.get("/user/addlogin",(req,res)=>{
-  res.send("<h1> user login </h1>");
-
-})
-
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Serve   ${PORT}`);
-});
+
+connectDb()
+  .then(() => {
+    console.log("databased connected");
+    app.listen(PORT, () => {
+      console.log(`Serve   ${PORT}`);
+    });
+  })
+  .catch((e) => {
+    console.log("databased connected failed", e.errorResponse.errmsg);
+  });
